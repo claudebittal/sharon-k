@@ -26,6 +26,7 @@ export interface SiteContent {
     roles: string[];
     ctaPrimaryLabel: string;
     ctaSecondaryLabel: string;
+    facts: { value: string; label: string }[];
   };
   services: {
     eyebrow: string;
@@ -50,15 +51,15 @@ export interface SiteContent {
     heading: string;
     lead: string;
     email: string;
-    whatsappPlaceholderNote: string;
+    whatsappNote: string;
     linksLabel: { youtube: string; spotify: string; instagram: string; facebook: string };
   };
   footer: string;
 }
 
-// WhatsApp number is still a placeholder from the original site — real number
-// has not been supplied yet. Do not treat this as a real, working contact.
-export const WHATSAPP_PLACEHOLDER = "972000000000";
+// Real WhatsApp number, supplied by the site owner. Used only inside wa.me
+// links — never render these digits as visible text on the page.
+export const WHATSAPP_NUMBER = "972547264411";
 export const REAL_EMAIL = "sharonkaniel@gmail.com"; // verified via her Facebook page contact info
 export const YOUTUBE_URL = "https://www.youtube.com/c/SharonK";
 export const SPOTIFY_URL = "https://open.spotify.com/artist/5LgsUcaI7HLfsfAbbhIEEI";
@@ -87,6 +88,12 @@ export const content: Record<Locale, SiteContent> = {
       roles: ["זמרת ויוצרת", "מדריכת הרכבים", "מפיקה מוזיקלית", "מופעים לארגונים"],
       ctaPrimaryLabel: "דברו איתי בוואטסאפ",
       ctaSecondaryLabel: "צפייה בקליפ",
+      facts: [
+        { value: "58K+", label: "צפיות בקליפ הבכורה" },
+        { value: "40", label: "סרטונים בערוץ היוטיוב" },
+        { value: "3", label: "מדינות שהופעתי בהן" },
+        { value: "5", label: "תחומי פעילות" },
+      ],
     },
     services: {
       eyebrow: "מה אני עושה",
@@ -150,7 +157,7 @@ export const content: Record<Locale, SiteContent> = {
       heading: "בואו נדבר",
       lead: "ספרו לי על האירוע או ההרכב, ואחזור אליכם תוך יום עבודה.",
       email: REAL_EMAIL,
-      whatsappPlaceholderNote: "מספר הוואטסאפ עדיין לא עודכן — זהו placeholder.",
+      whatsappNote: "פתיחת וואטסאפ עם שרון",
       linksLabel: { youtube: "יוטיוב", spotify: "ספוטיפיי", instagram: "אינסטגרם", facebook: "פייסבוק" },
     },
     footer: "Sharon K | שרון קניאל | זמרת, מדריכת הרכבים ומפיקה מוזיקלית | תל אביב",
@@ -175,6 +182,12 @@ export const content: Record<Locale, SiteContent> = {
       roles: ["Singer-Songwriter", "Ensemble Coach", "Music Producer", "Corporate Performances"],
       ctaPrimaryLabel: "Message on WhatsApp",
       ctaSecondaryLabel: "Watch the Video",
+      facts: [
+        { value: "58K+", label: "views on the debut video" },
+        { value: "40", label: "videos on the YouTube channel" },
+        { value: "3", label: "countries performed in" },
+        { value: "5", label: "service areas" },
+      ],
     },
     services: {
       eyebrow: "What I Do",
@@ -238,7 +251,7 @@ export const content: Record<Locale, SiteContent> = {
       heading: "Let's Talk",
       lead: "Tell me about your event or ensemble, and I'll get back to you within one business day.",
       email: REAL_EMAIL,
-      whatsappPlaceholderNote: "The WhatsApp number hasn't been updated yet — this is a placeholder.",
+      whatsappNote: "Open WhatsApp with Sharon",
       linksLabel: { youtube: "YouTube", spotify: "Spotify", instagram: "Instagram", facebook: "Facebook" },
     },
     footer: "Sharon K | Sharon Kaniel | Singer, Ensemble Coach & Music Producer | Tel Aviv",

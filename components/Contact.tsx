@@ -1,5 +1,5 @@
 import type { Locale } from "@/lib/content";
-import { content, WHATSAPP_PLACEHOLDER, YOUTUBE_URL, SPOTIFY_URL, INSTAGRAM_URL, FACEBOOK_URL } from "@/lib/content";
+import { content, WHATSAPP_NUMBER, YOUTUBE_URL, SPOTIFY_URL, INSTAGRAM_URL, FACEBOOK_URL } from "@/lib/content";
 
 export default function Contact({ locale }: { locale: Locale }) {
   const c = content[locale];
@@ -27,11 +27,11 @@ export default function Contact({ locale }: { locale: Locale }) {
             {c.contact.email}
           </a>
           <a
-            href={`https://wa.me/${WHATSAPP_PLACEHOLDER}`}
+            href={`https://wa.me/${WHATSAPP_NUMBER}`}
             target="_blank"
             rel="noopener"
             className="inline-flex items-center justify-center h-12 rounded-full px-6 text-sm font-bold border-2 border-white/40"
-            title={c.contact.whatsappPlaceholderNote}
+            title={c.contact.whatsappNote}
           >
             WhatsApp
           </a>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { Locale } from "@/lib/content";
-import { content, WHATSAPP_PLACEHOLDER, DEBUT_SINGLE_VIDEO } from "@/lib/content";
+import { content, WHATSAPP_NUMBER, DEBUT_SINGLE_VIDEO } from "@/lib/content";
 
 export default function Hero({ locale }: { locale: Locale }) {
   const c = content[locale];
@@ -50,7 +50,7 @@ export default function Hero({ locale }: { locale: Locale }) {
 
           <div className="flex flex-wrap gap-3">
             <a
-              href={`https://wa.me/${WHATSAPP_PLACEHOLDER}`}
+              href={`https://wa.me/${WHATSAPP_NUMBER}`}
               target="_blank"
               rel="noopener"
               className="inline-flex items-center justify-center h-12 rounded-full px-6 text-sm font-bold bg-[color:var(--color-pink)] text-white"
@@ -66,6 +66,16 @@ export default function Hero({ locale }: { locale: Locale }) {
               {c.hero.ctaSecondaryLabel}
             </a>
           </div>
+
+          <dl className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-white/10 rounded-2xl overflow-hidden mt-10 max-w-xl">
+            {c.hero.facts.map((f) => (
+              <div key={f.label} className="bg-[#1C0E2A]/70 p-4">
+                <dt className="sr-only">{f.label}</dt>
+                <dd className="font-black text-2xl text-[color:var(--color-pink)]">{f.value}</dd>
+                <dd className="text-xs text-[color:var(--color-mute)] mt-0.5">{f.label}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
     </section>
