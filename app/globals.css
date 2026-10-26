@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+:root {
+  --color-ink-deep: #140a1f;   /* primary dark — never pure black */
+  --color-ink-deep-2: #1c0e2a;
+  --color-pink: #ff2d8a;
+  --color-violet: #8b2fd1;
+  --color-paper: #f3ecfb;
+  --color-mute: #c9b9de;
+  --color-line: rgba(255, 255, 255, 0.14);
+}
+
+@theme inline {
+  --color-ink-deep: var(--color-ink-deep);
+  --color-ink-deep-2: var(--color-ink-deep-2);
+  --color-pink: var(--color-pink);
+  --color-violet: var(--color-violet);
+  --color-paper: var(--color-paper);
+  --color-mute: var(--color-mute);
+  --font-display: var(--font-rubik);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--color-ink-deep);
+  color: var(--color-paper);
+}
+
+::selection {
+  background: var(--color-pink);
+  color: #fff;
+}
+
+.glow-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.name-gradient {
+  background: linear-gradient(90deg, #ffffff 40%, #ffd6ec 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
