@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Locale } from "@/lib/content";
 import { content, WHATSAPP_NUMBER, DEBUT_SINGLE_VIDEO } from "@/lib/content";
+import VideoLightbox from "./VideoLightbox";
 
 export default function Hero({ locale }: { locale: Locale }) {
   const c = content[locale];
@@ -49,14 +50,14 @@ export default function Hero({ locale }: { locale: Locale }) {
             >
               {c.hero.ctaPrimaryLabel}
             </a>
-            <a
+            <VideoLightbox
+              locale={locale}
+              title={c.hero.ctaSecondaryLabel}
               href={DEBUT_SINGLE_VIDEO}
-              target="_blank"
-              rel="noopener"
               className="inline-flex items-center justify-center h-11 sm:h-12 rounded-full px-6 text-sm font-bold border-2 border-white/40"
             >
               {c.hero.ctaSecondaryLabel}
-            </a>
+            </VideoLightbox>
           </div>
 
           <nav aria-label={locale === "he" ? "חמשת תחומי הפעילות" : "The five service areas"} className="mb-3">

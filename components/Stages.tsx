@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Locale } from "@/lib/content";
 import { content } from "@/lib/content";
+import VideoLightbox from "./VideoLightbox";
 
 export default function Stages({ locale }: { locale: Locale }) {
   const c = content[locale];
@@ -38,20 +39,23 @@ export default function Stages({ locale }: { locale: Locale }) {
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 list-none p-0">
           {c.stages.videos.map((v) => (
             <li key={v.href}>
-              <a
+              <VideoLightbox
+                locale={locale}
+                title={v.title}
                 href={v.href}
-                target="_blank"
-                rel="noopener"
-                className="flex items-center justify-between gap-4 rounded-xl border border-white/15 px-4 py-3 hover:border-[color:var(--color-pink)] transition-colors"
+                className="w-full flex items-center justify-between gap-4 rounded-xl border border-white/15 px-4 py-3 text-start hover:border-[color:var(--color-pink)] transition-colors"
               >
                 <span>
                   <b className="block font-bold">{v.title}</b>
                   <small className="block text-[color:var(--color-mute)] text-sm">{v.subtitle}</small>
                 </span>
-                <span className="text-[color:var(--color-pink)] font-bold text-sm whitespace-nowrap">
-                  {locale === "he" ? "לצפייה" : "Watch"}
+                <span className="inline-flex items-center gap-1.5 text-[color:var(--color-pink)] font-bold text-sm whitespace-nowrap">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                  {locale === "he" ? "נגינה" : "Play"}
                 </span>
-              </a>
+              </VideoLightbox>
             </li>
           ))}
         </ul>
