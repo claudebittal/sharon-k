@@ -11,6 +11,28 @@ interface Msg {
   cta?: { label: string; href: string };
 }
 
+function AssistantBadge({ size = 40 }: { size?: number }) {
+  return (
+    <span
+      className="relative inline-flex shrink-0 items-center justify-center rounded-full"
+      style={{ width: size, height: size, background: "linear-gradient(135deg,#ffffff,#f3ecfb)" }}
+    >
+      <svg width={size * 0.55} height={size * 0.55} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M12 1a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3Z"
+          fill="#8B2FD1"
+        />
+        <path
+          d="M5 10v1a7 7 0 0 0 14 0v-1M12 18v4M9 22h6"
+          stroke="#FF2D8A"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+      </svg>
+    </span>
+  );
+}
+
 export default function ChatBot({ locale }: { locale: Locale }) {
   const topics = getTopics(locale);
   const [open, setOpen] = useState(false);
@@ -37,7 +59,7 @@ export default function ChatBot({ locale }: { locale: Locale }) {
         ? `היי שרון! מתעניין/ת לגבי: ${topic.label}`
         : `Hi Sharon! I'm interested in: ${topic.label}`;
     return {
-      label: locale === "he" ? "שליחה לשרון בוואטסאפ" : "Send to Sharon on WhatsApp",
+      label: locale === "he" ? "לשליחת הפנייה בוואטסאפ" : "Send Inquiry via WhatsApp",
       href: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waText)}`,
     };
   }
@@ -73,12 +95,20 @@ export default function ChatBot({ locale }: { locale: Locale }) {
         <button
           type="button"
           onClick={openBot}
-          className="fixed bottom-5 start-5 z-40 inline-flex items-center gap-2.5 h-14 rounded-full ps-5 pe-4 font-bold text-sm text-white shadow-2xl"
+          className="fixed bottom-5 start-5 z-40 inline-flex items-center gap-3 h-16 rounded-full ps-2.5 pe-5 font-bold text-white shadow-2xl animate-pulse-glow"
           style={{ background: "linear-gradient(120deg,#8B2FD1,#FF2D8A)" }}
           aria-haspopup="dialog"
         >
+          <AssistantBadge size={44} />
+          <span className="flex flex-col items-start leading-tight">
+            <span className="text-sm font-black">
+              {locale === "he" ? "העוזרת החכמה של שרון" : "Sharon's Smart Assistant"}
+            </span>
+            <span className="text-[11px] font-semibold text-white/85">
+              {locale === "he" ? "ייעוץ ותיאום הופעות" : "Booking & Inquiries"}
+            </span>
+          </span>
           <span className="w-2.5 h-2.5 rounded-full bg-[#7CF0B0] shadow-[0_0_0_4px_rgba(124,240,176,.25)]" />
-          {locale === "he" ? "צ׳אט עם העוזרת של שרון" : "Chat with Sharon's Assistant"}
         </button>
       )}
 
@@ -90,11 +120,11 @@ export default function ChatBot({ locale }: { locale: Locale }) {
           style={{ background: "#1C0E2A" }}
         >
           <div className="flex items-center gap-3 p-4" style={{ background: "linear-gradient(120deg,#8B2FD1,#FF2D8A)" }}>
-            <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-lg">🎤</div>
+            <AssistantBadge size={40} />
             <div className="flex-1">
-              <b className="block text-sm">{locale === "he" ? "העוזרת של Sharon K" : "Sharon K's Assistant"}</b>
+              <b className="block text-sm">{locale === "he" ? "העוזרת החכמה של Sharon K" : "Sharon K's Smart Assistant"}</b>
               <small className="block text-xs text-white/80">
-                {locale === "he" ? "מבוססת על מידע מאומת בלבד" : "Based on verified information only"}
+                {locale === "he" ? "ייעוץ ותיאום הופעות · מבוסס מידע מאומת בלבד" : "Booking & inquiries · based on verified information only"}
               </small>
             </div>
             <button

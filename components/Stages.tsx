@@ -7,8 +7,8 @@ export default function Stages({ locale }: { locale: Locale }) {
   const doubled = [...c.stages.venues, ...c.stages.venues];
 
   return (
-    <section id="stages" className="py-20">
-      <div className="overflow-hidden border-y border-white/10 py-3 mb-16 bg-black/20">
+    <section id="stages" className="py-12 sm:py-16">
+      <div className="overflow-hidden border-y border-white/10 py-3 mb-10 bg-black/20">
         <div className="flex gap-10 w-max animate-[marquee_28s_linear_infinite] motion-reduce:animate-none whitespace-nowrap font-black text-lg text-[color:var(--color-mute)]">
           {doubled.map((v, i) => (
             <span key={`${v}-${i}`}>

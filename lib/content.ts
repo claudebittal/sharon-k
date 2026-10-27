@@ -31,7 +31,8 @@ export interface SiteContent {
   services: {
     eyebrow: string;
     heading: string;
-    items: { title: string; body: string; featured?: boolean }[];
+    intro: string;
+    items: { title: string; body: string; icon: string; featured?: boolean }[];
   };
   about: {
     eyebrow: string;
@@ -52,7 +53,7 @@ export interface SiteContent {
     lead: string;
     email: string;
     whatsappNote: string;
-    linksLabel: { youtube: string; spotify: string; instagram: string; facebook: string };
+    linksLabel: { youtube: string; spotify: string; instagram: string; facebook: string; linkedin: string };
   };
   footer: string;
 }
@@ -63,8 +64,10 @@ export const WHATSAPP_NUMBER = "972547264411";
 export const REAL_EMAIL = "sharonkaniel@gmail.com"; // verified via her Facebook page contact info
 export const YOUTUBE_URL = "https://www.youtube.com/c/SharonK";
 export const SPOTIFY_URL = "https://open.spotify.com/artist/5LgsUcaI7HLfsfAbbhIEEI";
-export const INSTAGRAM_URL = "https://www.instagram.com/sharon177/";
+export const INSTAGRAM_URL = "https://www.instagram.com/sharonkthatsme/";
 export const FACEBOOK_URL = "https://www.facebook.com/SharonKLive";
+export const LINKEDIN_URL = "https://www.linkedin.com/in/sharon-kaniel-960175447/";
+export const QUOTE_WEBHOOK_URL = "https://claudeb.app.n8n.cloud/webhook/sharon-k-quote-request";
 export const DEBUT_SINGLE_VIDEO = "https://www.youtube.com/watch?v=1P-2zfB96V0";
 
 export const content: Record<Locale, SiteContent> = {
@@ -86,7 +89,7 @@ export const content: Record<Locale, SiteContent> = {
       tagline: "קול סול שמביא את כולם לשיר",
       lead: "זמרת סול ו-R&B מתל אביב, בוגרת בית הספר רימון, שהופיעה מתל אביב ועד ניו יורק ולוס אנג׳לס. מופעים, הדרכה והפקה שמשאירים את הקהל עם חיוך ועם שיר בראש.",
       roles: ["זמרת ויוצרת", "מדריכת הרכבים", "מפיקה מוזיקלית", "מופעים לארגונים"],
-      ctaPrimaryLabel: "דברו איתי בוואטסאפ",
+      ctaPrimaryLabel: "לתיאום הופעה בוואטסאפ",
       ctaSecondaryLabel: "צפייה בקליפ",
       facts: [
         { value: "58K+", label: "צפיות בקליפ הבכורה" },
@@ -97,28 +100,34 @@ export const content: Record<Locale, SiteContent> = {
     },
     services: {
       eyebrow: "מה אני עושה",
-      heading: "חמש דרכים לעבוד איתי",
+      heading: "חמישה תחומים. סטנדרט אחד.",
+      intro: "מבמה בינלאומית ועד אולפן הקלטות — בכל תחום אני מביאה את אותה מקצועיות, אנרגיה חיה ותשומת לב לפרטים, מהשיחה הראשונה ועד הרגע שאחרי המופע.",
       items: [
         {
           title: "מופעי חוויה לארגונים וחברות הייטק",
-          body: "ערבי חברה, ימי גיבוש ואירועי חג. מופע אינטראקטיבי שבו העובדים לא רק מקשיבים, הם שרים, מופיעים ויוצאים מחוברים יותר.",
+          body: "ערבי חברה, ימי גיבוש ואירועי חג. מופע אינטראקטיבי שבו העובדים לא רק מקשיבים — הם שרים, מופיעים ויוצאים מגובשים ומחוברים יותר.",
+          icon: "🏢",
           featured: true,
         },
         {
           title: "הדרכת הרכבים",
-          body: "להקות ומקהלות לנוער ולמבוגרים במתנ״סים, בבתי ספר ובארגונים. מהחזרה הראשונה ועד ההופעה על הבמה.",
+          body: "להקות ומקהלות לנוער ולמבוגרים במתנ״סים, בבתי ספר ובארגונים — ליווי מלא מהחזרה הראשונה ועד ההופעה על הבמה.",
+          icon: "🎶",
         },
         {
           title: "הפקה מוזיקלית",
-          body: "הפקת שירים ועיבודים, ליווי זמרים, הפקה מוזיקלית של מופעים וטקסים. הניסיון מהפקת הסינגל שלי לשירותכם.",
+          body: "הפקת שירים ועיבודים, ליווי זמרים, והפקה מוזיקלית של מופעים וטקסים — עם הניסיון מהפקת הסינגל שלי לשירותכם.",
+          icon: "🎚️",
         },
         {
           title: "הופעות ואירועים פרטיים",
-          body: "שירה חיה עם להקה או בהרכב קטן: סול, R&B, פופ ושירים עבריים. לחתונות, ימי הולדת וטקסים.",
+          body: "שירה חיה עם להקה מלאה או בהרכב קטן: סול, R&B, פופ ושירים עבריים — לחתונות, ימי הולדת וטקסים.",
+          icon: "💍",
         },
         {
           title: "המוזיקה המקורית שלי",
-          body: "שירים מקוריים, קאברים וראיונות. ההופעות והיצירה הן הלב של כל השאר.",
+          body: "שירים מקוריים, קאברים וראיונות. ההופעות והיצירה הן הלב של כל השאר, והן מה שמביא את הקול האישי לכל עבודה.",
+          icon: "🎤",
         },
       ],
     },
@@ -155,10 +164,10 @@ export const content: Record<Locale, SiteContent> = {
     contact: {
       eyebrow: "יצירת קשר",
       heading: "בואו נדבר",
-      lead: "ספרו לי על האירוע או ההרכב, ואחזור אליכם תוך יום עבודה.",
+      lead: "ספרו לנו קצת על הפרויקט — מופע לארגון, הדרכת הרכב, הפקה מוזיקלית, אירוע פרטי או שיתוף פעולה יצירתי — ונחזור אליכם עם הצעה מותאמת אישית תוך יום עבודה.",
       email: REAL_EMAIL,
-      whatsappNote: "פתיחת וואטסאפ עם שרון",
-      linksLabel: { youtube: "יוטיוב", spotify: "ספוטיפיי", instagram: "אינסטגרם", facebook: "פייסבוק" },
+      whatsappNote: "פתיחת וואטסאפ עם הצוות של שרון",
+      linksLabel: { youtube: "יוטיוב", spotify: "ספוטיפיי", instagram: "אינסטגרם", facebook: "פייסבוק", linkedin: "לינקדאין" },
     },
     footer: "Sharon K | שרון קניאל | זמרת, מדריכת הרכבים ומפיקה מוזיקלית | תל אביב",
   },
@@ -180,7 +189,7 @@ export const content: Record<Locale, SiteContent> = {
       tagline: "A Soul Voice That Gets Everyone Singing",
       lead: "A Tel Aviv-based soul and R&B singer-songwriter, Rimon School of Music graduate, who has performed from Tel Aviv to New York and Los Angeles. Performances, coaching, and production that leave audiences smiling, with a song stuck in their heads.",
       roles: ["Singer-Songwriter", "Ensemble Coach", "Music Producer", "Corporate Performances"],
-      ctaPrimaryLabel: "Message on WhatsApp",
+      ctaPrimaryLabel: "Book a Show — WhatsApp",
       ctaSecondaryLabel: "Watch the Video",
       facts: [
         { value: "58K+", label: "views on the debut video" },
@@ -191,28 +200,34 @@ export const content: Record<Locale, SiteContent> = {
     },
     services: {
       eyebrow: "What I Do",
-      heading: "Five Ways to Work Together",
+      heading: "Five Fields. One Standard.",
+      intro: "From international stages to the recording studio — every field gets the same professionalism, live energy, and attention to detail, from the first conversation to the moment after the show.",
       items: [
         {
           title: "Experience Shows for Companies & Tech Teams",
-          body: "Company nights, team-building days, and holiday events. An interactive show where employees don't just listen — they sing, perform, and leave more connected.",
+          body: "Company nights, team-building days, and holiday events. An interactive show where employees don't just listen — they sing, perform, and leave more connected and energized.",
+          icon: "🏢",
           featured: true,
         },
         {
           title: "Ensemble & Choir Coaching",
-          body: "Bands and choirs for teens and adults at community centers, schools, and companies — from the first rehearsal to the final show.",
+          body: "Bands and choirs for teens and adults at community centers, schools, and companies — full support from the first rehearsal to the final show.",
+          icon: "🎶",
         },
         {
           title: "Music Production",
           body: "Song production and arrangements, vocal coaching, and musical production for shows and ceremonies — backed by the experience of producing my own single.",
+          icon: "🎚️",
         },
         {
           title: "Private Events & Performances",
           body: "Live singing with a full band or a small lineup: soul, R&B, pop, and Hebrew songs — for weddings, birthdays, and ceremonies.",
+          icon: "💍",
         },
         {
           title: "My Original Music",
-          body: "Original songs, covers, and interviews. The performances and the songwriting are the heart of everything else.",
+          body: "Original songs, covers, and interviews. The performances and the songwriting are the heart of everything else — and what brings a personal voice to every job.",
+          icon: "🎤",
         },
       ],
     },
@@ -249,10 +264,10 @@ export const content: Record<Locale, SiteContent> = {
     contact: {
       eyebrow: "Get in Touch",
       heading: "Let's Talk",
-      lead: "Tell me about your event or ensemble, and I'll get back to you within one business day.",
+      lead: "Tell us about the project — a corporate show, ensemble coaching, music production, a private event, or a creative collaboration — and we'll get back to you with a tailored proposal within one business day.",
       email: REAL_EMAIL,
-      whatsappNote: "Open WhatsApp with Sharon",
-      linksLabel: { youtube: "YouTube", spotify: "Spotify", instagram: "Instagram", facebook: "Facebook" },
+      whatsappNote: "Open WhatsApp with Sharon's team",
+      linksLabel: { youtube: "YouTube", spotify: "Spotify", instagram: "Instagram", facebook: "Facebook", linkedin: "LinkedIn" },
     },
     footer: "Sharon K | Sharon Kaniel | Singer, Ensemble Coach & Music Producer | Tel Aviv",
   },
