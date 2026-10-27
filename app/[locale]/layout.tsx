@@ -23,7 +23,7 @@ export async function generateMetadata({
   const canonicalPath = locale === "he" ? "/" : "/en";
 
   return {
-    metadataBase: new URL("https://sharon-k.vercel.app"),
+    metadataBase: new URL("https://sharonkmusic.com"),
     title: locale === "he" ? "Sharon K | שרון קניאל" : "Sharon K | Sharon Kaniel",
     description: c.hero.lead,
     alternates: {
