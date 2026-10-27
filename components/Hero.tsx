@@ -1,7 +1,8 @@
 import Image from "next/image";
 import type { Locale } from "@/lib/content";
-import { content, WHATSAPP_NUMBER, DEBUT_SINGLE_VIDEO } from "@/lib/content";
+import { content, DEBUT_SINGLE_VIDEO } from "@/lib/content";
 import VideoLightbox from "./VideoLightbox";
+import QuoteForm from "./QuoteForm";
 
 export default function Hero({ locale }: { locale: Locale }) {
   const c = content[locale];
@@ -42,14 +43,12 @@ export default function Hero({ locale }: { locale: Locale }) {
           </p>
 
           <div className="flex flex-wrap gap-3 mb-6">
-            <a
-              href={`https://wa.me/${WHATSAPP_NUMBER}`}
-              target="_blank"
-              rel="noopener"
-              className="inline-flex items-center justify-center h-11 sm:h-12 rounded-full px-6 text-sm font-bold bg-[color:var(--color-pink)] text-white"
-            >
-              {c.hero.ctaPrimaryLabel}
-            </a>
+            <QuoteForm
+              locale={locale}
+              service={locale === "he" ? "פנייה כללית" : "General Inquiry"}
+              triggerLabel={c.hero.ctaPrimaryLabel}
+              triggerClassName="inline-flex items-center justify-center h-11 sm:h-12 rounded-full px-6 text-sm font-bold bg-[color:var(--color-pink)] text-white"
+            />
             <VideoLightbox
               locale={locale}
               title={c.hero.ctaSecondaryLabel}

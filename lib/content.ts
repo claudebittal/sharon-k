@@ -89,7 +89,7 @@ export const content: Record<Locale, SiteContent> = {
       tagline: "קול סול שמביא את כולם לשיר",
       lead: "זמרת סול ו-R&B מתל אביב, בוגרת בית הספר רימון, שהופיעה מתל אביב ועד ניו יורק ולוס אנג׳לס. מופעים, הדרכה והפקה שמשאירים את הקהל עם חיוך ועם שיר בראש.",
       roles: ["זמרת ויוצרת", "מדריכת הרכבים", "מפיקה מוזיקלית", "מופעים לארגונים"],
-      ctaPrimaryLabel: "לתיאום הופעה בוואטסאפ",
+      ctaPrimaryLabel: "לתיאום הופעה",
       ctaSecondaryLabel: "צפייה בקליפ",
       facts: [
         { value: "58K+", label: "צפיות בקליפ הבכורה" },
@@ -189,7 +189,7 @@ export const content: Record<Locale, SiteContent> = {
       tagline: "A Soul Voice That Gets Everyone Singing",
       lead: "A Tel Aviv-based soul and R&B singer-songwriter, Rimon School of Music graduate, who has performed from Tel Aviv to New York and Los Angeles. Performances, coaching, and production that leave audiences smiling, with a song stuck in their heads.",
       roles: ["Singer-Songwriter", "Ensemble Coach", "Music Producer", "Corporate Performances"],
-      ctaPrimaryLabel: "Book a Show — WhatsApp",
+      ctaPrimaryLabel: "Book a Show",
       ctaSecondaryLabel: "Watch the Video",
       facts: [
         { value: "58K+", label: "views on the debut video" },

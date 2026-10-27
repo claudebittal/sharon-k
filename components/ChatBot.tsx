@@ -4,11 +4,12 @@ import { useState, useRef, useEffect } from "react";
 import type { Locale } from "@/lib/content";
 import { WHATSAPP_NUMBER } from "@/lib/content";
 import { getTopics, matchTopic, fallbackMessage, introMessage, type BotTopic } from "@/lib/botKnowledge";
+import ChatLeadForm from "./ChatLeadForm";
 
 interface Msg {
   from: "bot" | "user";
   text: string;
-  cta?: { label: string; href: string };
+  topic?: BotTopic;
 }
 
 function AssistantBadge({ size = 40 }: { size?: number }) {
@@ -53,15 +54,12 @@ export default function ChatBot({ locale }: { locale: Locale }) {
     }
   }
 
-  function ctaFor(topic: BotTopic): { label: string; href: string } {
+  function waHrefFor(topic: BotTopic): string {
     const waText =
       locale === "he"
         ? `היי שרון! מתעניין/ת לגבי: ${topic.label}`
         : `Hi Sharon! I'm interested in: ${topic.label}`;
-    return {
-      label: locale === "he" ? "לשליחת הפנייה בוואטסאפ" : "Send Inquiry via WhatsApp",
-      href: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waText)}`,
-    };
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waText)}`;
   }
 
   function respondTo(raw: string) {
@@ -72,10 +70,7 @@ export default function ChatBot({ locale }: { locale: Locale }) {
     const topic = matchTopic(locale, text);
     setTimeout(() => {
       if (topic) {
-        setMessages((m) => [...m, { from: "bot", text: topic.respond(locale), cta: ctaFor(topic) }]);
-      } else if (/מחיר|עול|price|cost/i.test(text)) {
-        // handled as a topic already, kept here only as a safety net
-        setMessages((m) => [...m, { from: "bot", text: fallbackMessage(locale) }]);
+        setMessages((m) => [...m, { from: "bot", text: topic.respond(locale), topic }]);
       } else {
         setMessages((m) => [...m, { from: "bot", text: fallbackMessage(locale) }]);
       }
@@ -85,7 +80,7 @@ export default function ChatBot({ locale }: { locale: Locale }) {
   function handleChip(topic: BotTopic) {
     setMessages((m) => [...m, { from: "user", text: topic.label }]);
     setTimeout(() => {
-      setMessages((m) => [...m, { from: "bot", text: topic.respond(locale), cta: ctaFor(topic) }]);
+      setMessages((m) => [...m, { from: "bot", text: topic.respond(locale), topic }]);
     }, 400);
   }
 
@@ -147,16 +142,13 @@ export default function ChatBot({ locale }: { locale: Locale }) {
                   style={m.from === "user" ? { background: "#FF2D8A" } : { background: "#1C0E2A" }}
                 >
                   {m.text}
-                  {m.cta && (
-                    <a
-                      href={m.cta.href}
-                      target="_blank"
-                      rel="noopener"
-                      className="mt-2 inline-flex items-center justify-center h-9 rounded-full px-4 text-xs font-bold text-white"
-                      style={{ background: "#1FA855" }}
-                    >
-                      {m.cta.label}
-                    </a>
+                  {m.topic && (
+                    <ChatLeadForm
+                      locale={locale}
+                      topic={m.topic.label}
+                      body={m.text}
+                      waHref={waHrefFor(m.topic)}
+                    />
                   )}
                 </div>
               </div>
